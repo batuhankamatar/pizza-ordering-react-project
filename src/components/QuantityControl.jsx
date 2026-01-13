@@ -40,6 +40,7 @@ function QuantityControl({ count, handleIncrease, handleDecrease, toppings, size
         <button 
           type="button" 
           onClick={handleDecrease}
+          aria-label="Sipariş adedini bir azalt"
           className="
             w-full
             max-w-[57px]        
@@ -95,6 +96,7 @@ function QuantityControl({ count, handleIncrease, handleDecrease, toppings, size
         <button 
           type="button" 
           onClick={handleIncrease}
+          aria-label="Sipariş adedini bir artır"
           className="
             w-full
             max-w-[57px]        

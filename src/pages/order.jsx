@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import { motion, AnimatePresence } from "framer-motion";
+import pizzaImg from "../assets/loading-pizza.png";
 
 import OrderHeader from "../components/OrderHeader";
 import ProductInfo from "../components/ProductInfo";
@@ -47,7 +49,6 @@ function Order() {
     }
     setMinToppingsError(false);
     
-    // API Süreci Başlıyor
     setIsLoading(true);
 
     const orderData = {
@@ -62,12 +63,9 @@ function Order() {
 
     axios.post("https://reqres.in/api/pizza", orderData)
       .then((response) => {
-        console.log("Sipariş Başarılı:", response.data);
         history.push("/success");
       })
       .catch((error) => {
-        console.warn("CORS/Bağlantı hatası alındı, yine de yönlendiriliyor:", error);
-        // Hata olsa bile kullanıcıyı bekletip yönlendiriyoruz
         setTimeout(() => {
           history.push("/success");
         }, 1500);
@@ -78,43 +76,99 @@ function Order() {
   const handleDecrease = () => count > 1 && setCount(count - 1);
 
   return (
-    <div className="order-page w-full flex flex-col relative">
-      {/* İSTEDİĞİN EKRAN ORTASI LOADING */}
-      {isLoading && (
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-white/70 backdrop-blur-md">
-          <div className="flex flex-col items-center gap-4">
-            <div className="w-14 h-14 border-4 border-[#FDC913] border-t-[#CE2829] rounded-full animate-spin"></div>
-            <p className="font-['Barlow'] font-bold text-[20px] text-[#CE2829]">
-              Siparişiniz alınıyor...
-            </p>
-          </div>
-        </div>
-      )}
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="order-page w-full flex flex-col relative"
+    >
+      <AnimatePresence>
+        {isLoading && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-white/80 backdrop-blur-md"
+            role="alert"
+            aria-busy="true"
+          >
+            <div className="flex flex-col items-center gap-6 relative">
+
+              <div 
+                className="absolute w-56 h-56 rounded-full blur-2xl opacity-60"
+                style={{
+                  background: "radial-gradient(circle, #FDC913 10%, rgba(253, 201, 19, 0) 50%)",
+                  zIndex: 1,
+                  top: "40%", 
+                  left: "50%",
+                  transform: "translate(-50%, -50%)"
+                }}
+              />
+
+              <motion.img
+                src={pizzaImg}
+                alt="Pizza hazırlanıyor"
+                animate={{ 
+                  y: [0, -40, 0], 
+                  rotate: [0, 10, -10, 0],
+                  scale: [1, 1.05, 1]
+                }}
+                transition={{ 
+                  duration: 0.8, 
+                  repeat: Infinity, 
+                  ease: "easeInOut" 
+                }}
+                className="w-32 h-32 object-contain relative z-10"
+              />
+              
+              <motion.p 
+                animate={{ opacity: [0.4, 1, 0.4] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+                className="font-['Barlow'] font-bold text-[22px] text-[#CE2829] tracking-wider relative z-10"
+              >
+                Siparişiniz alınıyor...
+              </motion.p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <OrderHeader />
 
-      <main className="main-content self-center flex flex-col items-center w-full max-w-[420px] h-auto mt-[16px] lg:w-full lg:min-w-[532px]">
+      <motion.main 
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.2 }}
+        className="main-content self-center flex flex-col items-center w-full max-w-[420px] h-auto mt-[16px] lg:w-full lg:min-w-[532px]"
+      >
         <ProductInfo>
           <OrderForm handleSubmit={handleSubmit}>
             <div className="base-selections w-full max-w-[382px] flex justify-between mt-[40px] gap-[40px] lg:max-w-[428px]">
-              <SizeSelector size={size} setSize={setSize} />
-              <CrustSelector crust={crust} setCrust={setCrust} />
+              <section aria-labelledby="size-title">
+                <SizeSelector size={size} setSize={setSize} />
+              </section>
+              <section aria-labelledby="crust-title">
+                <CrustSelector crust={crust} setCrust={setCrust} />
+              </section>
             </div>
 
-            <ToppingsSelector
-              toppings={toppings}
-              toppingsError={toppingsError}
-              minToppingsError={minToppingsError}
-              handleToppingAdd={handleToppingAdd}
-            />
+            <section aria-labelledby="toppings-title">
+              <ToppingsSelector
+                toppings={toppings}
+                toppingsError={toppingsError}
+                minToppingsError={minToppingsError}
+                handleToppingAdd={handleToppingAdd}
+              />
+            </section>
 
             <div className="note-container w-full max-w-[420px] flex flex-col mt-[40px] gap-[16px] lg:w-full lg:max-w-[531px] lg:min-h-[137px] lg:gap-[16.5px]">
-              <h3 className="font-['Barlow'] font-[600] text-[22px] lg:text-[20px]">
+              <h3 id="note-title" className="font-['Barlow'] font-[600] text-[22px] lg:text-[20px]">
                 Sipariş Notu
               </h3>
               <input
+                id="order-note-input"
                 type="text"
                 name="note"
+                aria-labelledby="note-title"
                 placeholder="Siparişine eklemek istediğin bir not var mı?"
                 onKeyDown={(e) => { if (e.key === "Enter") e.preventDefault(); }}
                 value={orderNote}
@@ -138,8 +192,8 @@ function Order() {
             </div>
           </OrderForm>
         </ProductInfo>
-      </main>
-    </div>
+      </motion.main>
+    </motion.div>
   );
 }
 
