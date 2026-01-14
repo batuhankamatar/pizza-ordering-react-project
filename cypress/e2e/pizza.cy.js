@@ -1,6 +1,6 @@
 describe('Pizza Sipariş Uygulaması Testleri', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:5178/');
+    cy.visit('http://localhost:5183/');
   });
 
   it('Anasayfadan sipariş formuna gidebiliyor', () => {
@@ -64,3 +64,4 @@ describe('Pizza Sipariş Uygulaması Testleri', () => {
     cy.get('input[value="Kabak"]').should('be.disabled');
   });
 });
+

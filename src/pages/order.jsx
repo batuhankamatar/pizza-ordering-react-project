@@ -3,6 +3,8 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
 import pizzaImg from "../assets/loading-pizza.png";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import OrderHeader from "../components/OrderHeader";
 import ProductInfo from "../components/ProductInfo";
@@ -13,7 +15,7 @@ import ToppingsSelector from "../components/ToppingsSelector";
 import QuantityControl from "../components/QuantityControl";
 import OrderSummary from "../components/OrderSummary";
 
-function Order() {
+function Order({ setOrderData }) {
   const [toppings, setToppings] = useState([]);
   const [toppingsError, setToppingsError] = useState(false);
   const [minToppingsError, setMinToppingsError] = useState(false);
@@ -41,6 +43,9 @@ function Order() {
     }
   };
 
+  const handleIncrease = () => setCount(count + 1);
+  const handleDecrease = () => count > 1 && setCount(count - 1);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     if (toppings.length < 4) {
@@ -61,19 +66,22 @@ function Order() {
       totalPrice: (85.5 + toppings.length * 5) * count
     };
 
-    axios.post("https://reqres.in/api/pizza", orderData)
-      .then((response) => {
+    axios.post("https://reqres.in/api/pizza", orderData, {
+      headers: { "x-api-key": "reqres-free-v1" }
+    })
+    .then((response) => {
+      console.log("API Yanıtı:", response.data);
+      setOrderData(response.data);
+      setTimeout(() => {
         history.push("/success");
-      })
-      .catch((error) => {
-        setTimeout(() => {
-          history.push("/success");
-        }, 1500);
-      });
+      }, 2000);
+    })
+    .catch((error) => {
+      console.error("Hata:", error);
+      toast.error("Sipariş iletilemedi, internetinizi kontrol edin!", { position: "top-right" });
+      setIsLoading(false);
+    });
   };
-
-  const handleIncrease = () => setCount(count + 1);
-  const handleDecrease = () => count > 1 && setCount(count - 1);
 
   return (
     <motion.div 
@@ -81,6 +89,8 @@ function Order() {
       animate={{ opacity: 1 }}
       className="order-page w-full flex flex-col relative"
     >
+      <ToastContainer />
+      
       <AnimatePresence>
         {isLoading && (
           <motion.div 
@@ -92,7 +102,6 @@ function Order() {
             aria-busy="true"
           >
             <div className="flex flex-col items-center gap-6 relative">
-
               <div 
                 className="absolute w-56 h-56 rounded-full blur-2xl opacity-60"
                 style={{

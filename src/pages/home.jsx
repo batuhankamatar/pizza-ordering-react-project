@@ -91,8 +91,9 @@ function Home() {
           </h1>
         </div>
 
-        <Link to="/pizza" id="order-pizza" className="no-underline">
+        <Link to="/pizza" className="no-underline">
           <button
+            id="order-pizza"
             className="
               yellow-btn
               mt-[13.27px]          
