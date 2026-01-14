@@ -1,0 +1,73 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+function HomeHero() {
+  return (
+    <header
+      className="
+        home-banner-container
+        bg-[#CE2829]
+        bg-[url('/images/iteration-1-images/home-banner.png')]    
+        w-[100vw]
+        lg:w-full 
+        max-w-[540px]
+        lg:max-w-[none]
+        min-h-[1094px]
+        lg:min-h-[1080px] 
+        lg:h-screen   
+        h-full  
+        bg-cover
+        bg-center
+        bg-no-repeat
+        flex
+        justify-start
+        items-center
+        flex-col
+      "
+    >
+      <div
+        className="
+          content-overlay
+          flex
+          flex-col
+          items-center
+          text-center
+          w-full
+          max-w-[398px]       
+          min-h-[854px]    
+          mt-[120px]       
+          gap-[40px]  
+          lg:w-full
+          lg:min-w-[892px]
+          lg:h-[377px]    
+          lg:mt-[107px] 
+        "
+      >
+        <img
+          src="/images/iteration-1-images/logo.svg"
+          alt="Teknolojik Yemekler"
+          className="home-logo max-w-[362px] w-[90vw] h-auto lg:w-full lg:min-h-[46px]"
+        />
+
+        <div className="hero-text max-w-[398px] w-[90vw] flex flex-col items-center text-center lg:w-full lg:max-w-[694px] lg:h-auto">
+          <h1 className="font-['Roboto_Condensed'] font-[300] text-[86px] leading-[92px] tracking-[1.5px] uppercase text-[#ffffff] text-center w-[90vw] lg:w-full">
+            KOD ACIKTIRIR <br /> PİZZA, DOYURUR
+          </h1>
+        </div>
+
+        <Link to="/pizza" className="no-underline">
+          <button
+            id="order-pizza"
+            className="yellow-btn mt-[13.27px] w-[193.27px] min-h-[56px] bg-[#FDC913] hover:bg-[#EAB208] rounded-[50px] border-none flex justify-center items-center cursor-pointer transition-colors"
+          >
+            <span className="font-['Barlow'] font-[600] text-[18px] text-[#292929]">
+              ACIKTIM
+            </span>
+          </button>
+        </Link>
+      </div>
+    </header>
+  );
+}
+
+export default HomeHero;
