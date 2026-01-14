@@ -20,6 +20,7 @@ function OrderSummary({ toppings, count }) {
         lg:ml-auto
         lg:col-start-2
         lg:row-start-1
+        lg:bg-[#FAF7F2]
       "
     >
       <h3 

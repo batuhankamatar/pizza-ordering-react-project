@@ -7,12 +7,13 @@ function OrderHeader() {
         order-header
         bg-[#CE2829]          
         w-full                
-        min-h-[207px]          
+        h-[207px]          
         flex                  
         flex-col              
         items-center          
         justify-start  
         lg:w-full
+        lg:max-h-[138px]
             
       "
     >
@@ -25,7 +26,7 @@ function OrderHeader() {
           flex                
           justify-center      
           mt-[81px]
-          lg:mt-[66.5px]
+          lg:mt-[54.5px]
         "
       >
         <img 
@@ -40,18 +41,18 @@ function OrderHeader() {
           " 
         />
       </div>
-      
       <div 
         className="
           bread-crumb
           w-full              
-          max-w-[226]
+          max-w-[226px]
           min-h-[29px]    
           flex               
           gap-[4px]  
           mt-[30px]  
-          ml-[120px]  
-          lg:full  
+          mr-[200px]
+          lg:hidden
+          lg:w-full  
           lg:max-w-[182px]  
           lg:mr-[480px]
         "
@@ -90,7 +91,7 @@ function OrderHeader() {
             font-['Barlow']   
             font-[700]   
             text-[20px]   
-            text-[#FAF7F2] 
+            text-[#FFFFFF] 
             lg:text-[16px]   
           "
         >

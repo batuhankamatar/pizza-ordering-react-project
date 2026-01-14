@@ -14,6 +14,8 @@ import CrustSelector from "../components/CrustSelector";
 import ToppingsSelector from "../components/ToppingsSelector";
 import QuantityControl from "../components/QuantityControl";
 import OrderSummary from "../components/OrderSummary";
+import ProductVisual from "../components/ProductVisual";
+import Footer from "../components/Footer"
 
 function Order({ setOrderData }) {
   const [toppings, setToppings] = useState([]);
@@ -147,11 +149,12 @@ function Order({ setOrderData }) {
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.2 }}
-        className="main-content self-center flex flex-col items-center w-full max-w-[420px] h-auto mt-[16px] lg:w-full lg:min-w-[532px]"
+        className="main-content self-center flex flex-col items-center w-full max-w-[420px] h-auto mt-[16px] lg:w-full lg:min-w-[532px] lg:mt-[0px]"
       >
+        <ProductVisual />
         <ProductInfo>
           <OrderForm handleSubmit={handleSubmit}>
-            <div className="base-selections w-full max-w-[382px] flex justify-between mt-[40px] gap-[40px] lg:max-w-[428px]">
+            <div className="base-selections w-full max-w-[382px] flex justify-between mt-[40px] gap-[40px] lg:w-full lg:max-w-[529px] lg:gap-[56px]">
               <section aria-labelledby="size-title">
                 <SizeSelector size={size} setSize={setSize} />
               </section>
@@ -182,7 +185,7 @@ function Order({ setOrderData }) {
                 onKeyDown={(e) => { if (e.key === "Enter") e.preventDefault(); }}
                 value={orderNote}
                 onChange={(e) => setOrderNote(e.target.value)}
-                className="order-note w-full max-w-[420px] min-h-[69px] rounded-[6px] border-[1px] border-[#D9D9D9] pl-[20px] pt-[5px] pb-[4px] outline-none lg:w-full lg:max-w-[531px] lg:max-h-[56px] placeholder:text-[#5F5F5F] placeholder:font-['Barlow'] placeholder:font-[500] placeholder:text-[18px] lg:placeholder:text-[14px]"
+                className="order-note w-full max-w-[420px] min-h-[69px] rounded-[6px] border-[1px] border-[#D9D9D9] pl-[20px] pt-[5px] pb-[4px] outline-none lg:w-full lg:max-w-[531px] lg:max-h-[56px] placeholder:text-[#5F5F5F] placeholder:font-['Barlow'] placeholder:font-[500] placeholder:text-[18px] lg:placeholder:text-[14px] lg:bg-[#FAF7F2]"
               />
             </div>
 
@@ -202,6 +205,9 @@ function Order({ setOrderData }) {
           </OrderForm>
         </ProductInfo>
       </motion.main>
+      <div className="hidden lg:block">
+        <Footer />
+      </div>
     </motion.div>
   );
 }
