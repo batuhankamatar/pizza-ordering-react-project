@@ -23,6 +23,7 @@ function Order({ setOrderData }) {
   const [minToppingsError, setMinToppingsError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  const [name, setName] = useState("");
   const [orderNote, setOrderNote] = useState("");
   const [count, setCount] = useState(1);
   const [size, setSize] = useState("");
@@ -60,6 +61,7 @@ function Order({ setOrderData }) {
 
     const orderData = {
       pizzaName: "Position Absolute Acı Pizza",
+      name,
       size,
       crust,
       toppings,
@@ -172,7 +174,25 @@ function Order({ setOrderData }) {
               />
             </section>
 
-            <div className="note-container w-full max-w-[420px] flex flex-col mt-[40px] gap-[16px] lg:w-full lg:max-w-[531px] lg:min-h-[137px] lg:gap-[16.5px]">
+            <div className="name-container w-full max-w-[420px] flex flex-col mt-[40px] gap-[16px] lg:w-full lg:max-w-[531px] lg:gap-[16.5px]">
+              <h3 className="font-['Barlow'] font-[600] text-[22px] lg:text-[20px]">
+                İsim
+                <span className="text-[#D80027]">*</span>
+              </h3>
+              <input
+                id="name-input"
+                type="text"
+                placeholder="Adınızı giriniz (En az 3 karakter)"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="order-name w-full max-w-[420px] min-h-[50px] rounded-[6px] border-[1px] border-[#D9D9D9] pl-[20px] outline-none lg:w-full lg:max-w-[531px] placeholder:text-[#5F5F5F] lg:bg-[#FAF7F2]"
+              />
+              {name.length > 0 && name.length < 3 && (
+                <span className="text-[#CE2829] text-sm font-['Barlow']">İsim en az 3 karakter olmalıdır!</span>
+              )}
+            </div>
+
+            <div className="note-container w-full max-w-[420px] flex flex-col mt-[20px] gap-[16px] lg:w-full lg:max-w-[531px] lg:min-h-[137px] lg:gap-[16.5px]">
               <h3 id="note-title" className="font-['Barlow'] font-[600] text-[22px] lg:text-[20px]">
                 Sipariş Notu
               </h3>
@@ -200,6 +220,7 @@ function Order({ setOrderData }) {
                 toppings={toppings} 
                 size={size}
                 crust={crust}
+                name={name}
               />
             </div>
           </OrderForm>

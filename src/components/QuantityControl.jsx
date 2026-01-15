@@ -1,8 +1,8 @@
-function QuantityControl({ count, handleIncrease, handleDecrease, toppings, size, crust }) {
+function QuantityControl({ count, handleIncrease, handleDecrease, toppings, size, crust, name }) {
 
   const selectedToppingsCount = toppings ? toppings.length : 0;
 
-  const isFormValid = selectedToppingsCount >= 4 && size && crust;
+  const isFormValid = selectedToppingsCount >= 4 && size && crust && name && name.length >= 3;
 
   return (
     <div 

@@ -113,6 +113,9 @@ function Success() {
             </h2>
 
             <div className="lg:flex lg:flex-col lg:gap-[13px] lg:items-start lg:w-full lg:max-w-[202px] lg:font-['Barlow']">
+              <p className="lg:flex lg:font-[400] text-[16px] text-[#FFFFFF]">
+                Adet:&nbsp;<span className="font-[700] lg:text-[16px]">{count}</span>
+              </p>
               <p className="lg:flex lg:font-[400] text-[16px] text-[#FFFFFF]">Boyut:&nbsp;<span className="lg:font-[700] lg:text-[16px]"> {orderData.size}</span></p>
               <p className="lg:flex lg:font-[400] text-[16px] text-[#FFFFFF]">Hamur:&nbsp;<span className="font-[700] lg:text-[16px]">{crustMap[orderData.crust] ||orderData.crust}</span></p>
               <p className="text-left lg:block lg:font-[400] text-[16px] text-[#FFFFFF]">
@@ -120,8 +123,14 @@ function Success() {
                   {orderData.toppings && orderData.toppings.join(", ")}
                 </span>
               </p>
+              <p className="font-['Barlow'] font-[400] text-[16px] text-[#FFFFFF]">
+                Müşteri:&nbsp;
+                <span className="lg:font-[700] lg:text-[16px]">
+                  {orderData.name}
+                </span>
+              </p>
               {orderData.orderNote && (
-                <p className="hidden lg:block lg:font-[400] text-[16px] text-[#FFFFFF] mt-[10px]">
+                <p className="hidden lg:block lg:font-[400] text-[16px] text-[#FFFFFF]">
                   Sipariş Notu:&nbsp;
                   <span className="lg:font-[700] lg:text-[16px]">
                     {orderData.orderNote}
