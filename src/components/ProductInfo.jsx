@@ -51,7 +51,7 @@ function ProductInfo({ children }) {
 
           <div className="item-details w-full max-w-[420px] h-auto flex flex-col mt-[21px] lg:w-full lg:min-w-[532px]">
             <p className="description w-full max-w-[409px] h-auto font-['Barlow'] font-[400] text-[20px] leading-[29px] mt-[21px] lg:w-full lg:min-w-[532px] lg:text-[16px]">
-              Frontent Dev olarak hala position:absolute kullanıyorsan bu çok acı pizza tam sana göre. Pizza, domates, peynir ve genellikle çeşitli diğer malzemelerle kaplanmış, daha sonra geleneksel olarak odun ateşinde bir fırında yüksek sıcaklıkta pişirilen, genellikle yuvarlak, düzleştirilmiş mayalı buğday bazlı hamurdan oluşan İtalyan kökenli lezzetli bir yemektir. . Küçük bir pizzaya bazen pizzetta denir.
+              Frontent Dev olarak hala position:absolute kullanıyorsan bu çok acı pizza tam sana göre. Pizza, domates, peynir ve genellikle çeşitli diğer malzemelerle kaplanmış, daha sonra geleneksel olarak odun ateşinde bir fırında yüksek sıcaklıkta pişirilen, genellikle yuvarlak, düzleştirilmiş mayalı buğday bazlı hamurdan oluşan İtalyan kökenli lezzetli bir yemektir. Küçük bir pizzaya bazen pizzetta denir.
             </p>
           </div>
         </div>

@@ -1,4 +1,4 @@
-function OrderSummary({ toppings, count }) {
+function OrderSummary({ toppings = [], count }) {
   return (
     <div 
       className="
@@ -77,7 +77,7 @@ function OrderSummary({ toppings, count }) {
             text-[#5F5F5F]     
           "
         >
-          {toppings.length * 5}.00₺
+          {(toppings?.length || 0) * 5}.00₺
         </span>
       </div>
 
@@ -120,7 +120,7 @@ function OrderSummary({ toppings, count }) {
             text-[#CE2829]       
           "
         >
-          {(85.5 + toppings.length * 5) * count}₺
+          {((85.5 + (toppings?.length || 0) * 5) * count).toFixed(2)}₺
         </p>
       </div>
     </div>

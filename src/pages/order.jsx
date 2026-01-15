@@ -75,7 +75,7 @@ function Order({ setOrderData }) {
       console.log("API Yanıtı:", response.data);
       setOrderData(response.data);
       setTimeout(() => {
-        history.push("/success");
+        history.push("/success", response.data);
       }, 2000);
     })
     .catch((error) => {
