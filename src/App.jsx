@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Order from './pages/Order';
 import Success from './pages/Success';
+import ScrollToTop from "./components/ScrollToTop";
 import './App.css';
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
 
   return (
     <div className="App">
+      <ScrollToTop />
       <Switch>
         <Route exact path="/">
           <Home />

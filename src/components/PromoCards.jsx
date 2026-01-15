@@ -25,7 +25,6 @@ function PromoCards() {
         lg:justify-between
       "
     >
-      {/* Sol Büyük Kart: Özel Lezzetus */}
       <div
         className="
           card-left
@@ -60,7 +59,6 @@ function PromoCards() {
         </Link>
       </div>
 
-      {/* Sağ Taraf: İki Küçük Kart */}
       <div
         className="
           right-cards
@@ -77,7 +75,6 @@ function PromoCards() {
           flex-none
         "
       >
-        {/* Üst Kart: Hackathlon Burger */}
         <div className="top-card w-full max-w-[422px] lg:w-full lg:max-w-[530px] h-[270px] lg:h-[220px] rounded-[12px] flex flex-col items-start relative overflow-hidden">
           <Link to="/pizza" className="top-container h-full w-full flex items-center relative m-auto no-underline">
             <img
@@ -98,7 +95,6 @@ function PromoCards() {
           </Link>
         </div>
 
-        {/* Alt Kart: npm Kurye */}
         <div className="bottom-card relative w-full max-w-[422px] lg:w-full lg:max-w-[530px] h-[270px] lg:h-[220px] rounded-[12px] overflow-hidden">
           <Link to="/pizza" className="bottom-container h-full w-full flex items-center relative m-auto no-underline">
             <img
