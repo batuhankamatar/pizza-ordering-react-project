@@ -10,10 +10,10 @@ function MainCategories() {
         w-full
         lg:w-full
         h-auto
-        max-h-[268px]
         lg:h-[94px]
         bg-white
         items-center
+        xs:flex
       "
     >
       <div
@@ -27,7 +27,7 @@ function MainCategories() {
           content-center
           w-full
           lg:w-auto
-          h-[248px]
+          h-auto
           lg:h-[42px]
           gap-x-[41px]
           gap-y-[29px]
@@ -35,6 +35,11 @@ function MainCategories() {
           mt-[10px]
           lg:my-[32px]
           lg:mx-auto
+          xs:flex
+          xs:flex-col
+          xs:h-auto
+          xs:w-full
+          xs:flex-row
         "
       >
         <a href="#" className="nav-item flex flex-row items-center gap-[16px] h-[42px] no-underline w-auto ml-[32px] lg:ml-0 min-w-[150px] lg:min-w-0">
